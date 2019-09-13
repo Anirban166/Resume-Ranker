@@ -11,7 +11,7 @@ Added via Apache POI and PDFBox (jar) libraries with all dependencies clear by t
 
 Issues:
 ---
-(1) POI HPWF's extractor with fileData (String array) as object has access to reading characters by word, and no other methods that support reading words. <br>
+(1) POI HPWF's extractor with fileData (String array) as object has access to reading the file by characters, and no other methods that support reading words. <br>
 Status: Solved by extracting contents into another file in local workspace and reading from that. (Bingo)
 
 (1) PDF Document Entry function gives log4j warnings. <br>
