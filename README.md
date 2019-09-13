@@ -32,3 +32,4 @@ Status: Solved by implemented a for each loop iterating through the files in a d
 
 (7) File Redundancy on both blocks due to previous I/O methods. <br>
 Status: Solved by introducing f-parameters on each block.
+ 
