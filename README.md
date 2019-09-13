@@ -25,3 +25,4 @@ Status: Temporary Solution - write in a line with no carriage return or similar 
 >> Update : All string read methods in doc follow line reading and hence it is difficult to resolve this. (tried with streamers, buffers, files-class etc. but same result) Follow temporary solution for now. (for doc files).
 
 (5) PDF/DOC Recognition in a File Directory. <br>
+Status: Solved by using FileFilters.
