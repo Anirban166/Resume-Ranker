@@ -14,11 +14,14 @@ Issues:
 (1) POI HPWF's extractor with fileData (String array) as object has access to reading the file by characters, and no other methods that support reading words. <br>
 Status: Solved by extracting contents into another file in local workspace and reading from that. (Bingo)
 
-(1) PDF Document Entry function gives log4j warnings. <br>
+(2) PDF Document Entry function gives log4j warnings. <br>
 Status: Solved by using a Basic configurator for that function dec. line only. (Warning free console - Beri nice)
 
-(1) PDF Encryption rule-pass check. <br>
+(3) PDF Encryption rule-pass check. <br>
 Status: Added Encryption check and imported TextStrippers based on area. (Brainwave)
 
-(1) Buffreader has only LineReader method hence all scanning is line-based which returns multiple instances of keyword-findings and weightage. <br>
-Status: Temporary Solution - write in a line with no carriage return or similar line breaking (eof) characters. (like enter)
+(4) Buffreader has only LineReader method hence all scanning is line-based which returns multiple instances of keyword-findings and weightage. <br>
+Status: Temporary Solution - write in a line with no carriage return or similar line breaking (eof) characters. (like enter) <br>
+>> Update : All string read methods in doc follow line reading and hence it is difficult to resolve this. (tried with streamers, buffers, files-class etc. but same result) Follow temporary solution for now. (for doc files).
+
+(5) PDF/DOC Recognition in a File Directory. <br>
