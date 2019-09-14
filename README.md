@@ -23,6 +23,7 @@ Status: Added Encryption check and imported TextStrippers based on area. (Brainw
 (4) Buffreader has only LineReader method hence all scanning is line-based which returns multiple instances of keyword-findings and weightage. <br>
 Status: Temporary Solution - write in a line with no carriage return or similar line breaking (eof) characters. (like enter) <br>
 >> Update : All string read methods in doc follow line reading and hence it is difficult to resolve this. (tried with streamers, buffers, files-class etc. but same result) Follow temporary solution for now. (for doc files).
+>> Update : Solved by splitting directly from filedata.
 
 (5) PDF/DOC Recognition in a File Directory. <br>
 Status: Solved by using FileFilters.
@@ -32,4 +33,6 @@ Status: Solved by implemented a for each loop iterating through the files in a d
 
 (7) File Redundancy on both blocks due to previous I/O methods. <br>
 Status: Solved by introducing f-parameters on each block.
+
+(8)
  
