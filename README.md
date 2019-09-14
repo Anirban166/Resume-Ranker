@@ -38,6 +38,6 @@ Status: Solved by taking a scanner object with a line as input which is split in
 
 Extras
 ---
-Added Application Interface (Jframe+Swinger GUI) to take custom keywords and directory as input.
-Done with everything else.
+Added Application Interface (Jframe+Swinger GUI) to take custom keywords and directory as input. <br>
+Output will be displayed on three platforms - the eclipse console, a word document and on the application result textfield.
  
