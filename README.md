@@ -35,4 +35,9 @@ Status: Solved by introducing f-parameters on each block.
 
 (8) Keyword Input rather than hardcoded String array: <br>
 Status: Solved by taking a scanner object with a line as input which is split into keywords seperated by whitespace. (Input must be keywords in a line seperated by blankspace)
+
+Extras
+---
+Added Application Interface (Jframe+Swinger GUI) to take custom keywords and directory as input.
+Done with everything else.
  
