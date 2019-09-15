@@ -1,5 +1,5 @@
 # Resume-Keyword-Scanner
-Hackathon entry for a Java program which reads resumes and desired keywords, returns keywords found and the total weightage of resume. (Can be used as a resume ranker among a list of resumes) - Files include .pdf/.doc formats. (Executable+GUI might be added later.)
+Java program which scans all files from any specified directory and reads the ones with .doc and .pdf extensions among them, extracting desired keywords and returns keywords found with the weightage of resume. (Can be used as a resume ranker among a list of resumes) Input and Output is carried via a GUI designed using Jframe, alongwith the output being saved to a document ready for export.
 
 ```
 Files to be uploaded on 15/09/19. within UTC:2-10:00.
@@ -31,12 +31,6 @@ Status: Solved by using FileFilters.
 
 (6) Files iteration / Reading all files in a directory: <br>
 Status: Solved by implemented a for each loop iterating through the files in a directory with only pdf/doc listing as specified in Filechooser class and then differentiating from those two based on their ending name.
-
-(7) File Redundancy on both blocks due to previous I/O methods. <br>
-Status: Solved by introducing f-parameters on each block.
-
-(8) Keyword Input rather than hardcoded String array: <br>
-Status: Solved by taking a scanner object with a line as input which is split into keywords seperated by whitespace. (Input must be keywords in a line seperated by blankspace)
 
 Extras
 ---
