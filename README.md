@@ -1,5 +1,5 @@
 # Resume-Keyword-Scanner
-Java program which scans all files from any specified directory and reads the ones with .doc and .pdf extensions among them, extracting desired keywords and returns keywords found with the weightage of resume. (Can be used as a resume ranker among a list of resumes) Input and Output is carried via a GUI designed using Jframe, alongwith the output being saved to a document ready for export.
+Java program which scans all files from any specified directory and reads the ones with .doc and .pdf extensions among them, extracting desired keywords and returns keywords found with the weightage of resume. Can be used as a resume ranker among a list of resumes. (might add a GUI later)
 
 ```
 Files to be uploaded on 15/09/19. within UTC:2-10:00.
