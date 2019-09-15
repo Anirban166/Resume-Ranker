@@ -21,9 +21,9 @@ import org.apache.pdfbox.text.PDFTextStripperByArea;
 //include log4j configurator to remove log4j warnings:
 import org.apache.log4j.BasicConfigurator;
 
-public class KeywordScannerForResumeTourist 
+public class KeywordScannerForResumeByAnirban 
 {	
-	public static JTextField t1,t2;
+    public static JTextField t1,t2;
     public static TextArea t3;
     public static JLabel l1,l2,l3;
 	
