@@ -4,8 +4,8 @@ Hackathon entry for a Java program which reads resumes and desired keywords, ret
 ```
 Files to be uploaded on 15/09/19. within UTC:2-10:00.
 ```
-<img src="images/Runscreen_console_gui.png" width="100%">
-<img src="images/runscreen_gui_doc.png" width="100%">
+<img src="Runscreens/Runscreen_console_gui.png" width="100%">
+<img src="Runscreens/runscreen_gui_doc.png" width="100%">
 
 Support for DOC/PDF:
 ---
