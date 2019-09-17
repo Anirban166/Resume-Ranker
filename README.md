@@ -4,7 +4,7 @@ Java program which scans all files from any specified directory and reads the on
 ```
 Files uploaded on 15/09/19 within UTC:02-10:00
 ```
-<img src="Runscreens/resumescannerconsole+gui.png" width="100%">
+<img src="Runscreens/Resumescannerconsole+gui.png" width="100%">
 <img src="Runscreens/runscreen_gui_doc.png" width="100%">
 
 Support for DOC/PDF:
