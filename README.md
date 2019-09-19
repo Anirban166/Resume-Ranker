@@ -13,28 +13,31 @@ Added via Apache POI and PDFBox libraries.
 
 Issues:
 ---
-(1) POI HPWF's extractor with fileData (String array) as object has access to reading the file by characters, and no other methods that support reading words. <br>
-Status: Solved by extracting contents into another file in local workspace and reading from that.
+(1) Basics like keyword input and support for keyword prefixes. <br>
+-> Took a null string (for dynamic size) wherein I took input from a scanner object and then applied the ReadLine() method to that string breaking the string into words by using split(“ “) method (distinguishes words by whitespace character) and storing those keywords in a string array. To include keywords ending at periods, commas etc I included such character exceptions.
 
-(2) PDF Document Entry function gives log4j warnings. <br>
-Status: Solved by using a Basic configurator for that function dec. line only. (Warning free console)
+(2) Apache POI HPWF's extractor has access to reading the file by ParagraphText method, and no other methods that support reading words. <br>
+-> Solved by extracting contents into another file in local workspace and reading from that.
+
+(2) PDF Document extractor method gives log4j warnings. <br>
+-> Solved by using a Basic configurator inside main method. (Warning free console)
 
 (3) PDF Encryption rule-pass check. <br>
-Status: Added Encryption check and imported TextStrippers based on area. 
+-> Added Encryption check and used TextStrippers based on area.
 
-(4) Buffreader has only LineReader method hence all scanning is line-based which returns multiple instances of keyword-findings and weightage. <br>
-Status : All string read methods in doc follow line reading and hence it is difficult to resolve this. (tried with streamers, buffers, files-class etc. but same result) Temporary Solution - write in a line with no carriage return or similar line breaking (eof) characters. (like enter) 
->> Update : Solved by splitting directly from filedata.
+(4) Buffer reader has only LineReader method hence all scanning is line-based which returns multiple instances of keyword-findings (by each line) and weightage. <br>
+-> Solved by splitting file content directly from filedata into a character stream.
 
 (5) PDF/DOC Recognition in a File Directory. <br>
-Status: Solved by using FileFilters.
+-> Solved by using FileFilters.
 
 (6) Files iteration / Reading all files in a directory: <br>
-Status: Solved by implemented a for each loop iterating through the files in a directory with only pdf/doc listing as specified in Filechooser class and then differentiating from those two based on their ending name.
+-> Solved by implementing a for each loop iterating through the files in a directory with only pdf/doc listing as specified in Filechooser class and then differentiating from those two based on their ending name.
+
 
 Extras
 ---
-Added Application Interface (Jframe+Swinger GUI) to take custom keywords and directory as input. <br>
-Output will be displayed on three platforms - the eclipse console, a word document and on the application result textfield. <br>
-Added support for Latex.
+(1) Added application interface (Jframe+Swinger GUI) to take keywords and directory as input and display output in a textbox. <br>
+(2) Output will be displayed on three platforms - the eclipse console, the GUI’s output textbox and in a word file as well (like a log). <br>
+(3) Added support for Latex.
  
