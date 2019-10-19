@@ -1,5 +1,5 @@
 # Keyword-Based Resume Ranker
-Java program which scans all files from any specified directory and reads the ones with .doc and .pdf extensions, extracting desired keywords found and returning the total weightage of each resume. (To be used as a keywrod-based ranker for resumes)
+Java program which scans all files from any specified directory and reads the ones with .doc and .pdf extensions, extracting desired keywords found and returning the total weightage of each resume. (To be used as a keyword-based ranker for resumes)
 ```
 Files uploaded on 15/09/19 within UTC:02-10:00
 ```
