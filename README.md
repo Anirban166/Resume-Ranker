@@ -1,5 +1,5 @@
 # Keyword-Based Resume Scanner
-Java program which scans all files from any specified directory and reads the ones with .doc and .pdf extensions among them, extracting desired keywords and returning keywords found with the weightage of resume. Can be used as a resume ranker among a list of resumes. 
+Java program which scans all files from any specified directory and reads the ones with .doc and .pdf extensions, extracting desired keywords found and returning the total weightage of each one. Can be used as a resume ranker.
 ```
 Files uploaded on 15/09/19 within UTC:02-10:00
 ```
@@ -10,7 +10,7 @@ Support for DOC/PDF:
 ---
 Added via Apache POI and PDFBox libraries.
 
-Issues:
+Issues Solved: 
 ---
 (1) Basics like keyword input and support for keyword prefixes. <br>
 >> Took a null string (for dynamic size) wherein I took input from a scanner object and then applied the ReadLine() method to that string breaking the string into words by using split(“ “) method (distinguishes words by whitespace character) and storing those keywords in a string array. To include keywords ending at periods, commas etc I included such character exceptions.
