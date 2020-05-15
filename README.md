@@ -20,13 +20,13 @@ Solved by extracting contents into another file in local workspace and reading f
 - PDF Document extractor method gives log4j warnings: <br>
 Solved by using a Basic configurator inside the main method. (Warning free console)
 
-- PDF Encryption rule-pass check. <br>
+- PDF Encryption rule-pass check: <br>
 Added Encryption check and used TextStrippers based on area.
 
-- Buffer reader has only LineReader method hence all scanning is line-based which returns multiple instances of keyword-findings (by each line) and weightage. <br>
+- Buffer reader has only LineReader method hence all scanning is line-based which returns multiple instances of keyword-findings (by each line) and weightage: <br>
 Solved by splitting file content directly from filedata into a character stream.
 
-- PDF/DOC Recognition in a File Directory. <br>
+- PDF/DOC Recognition in a File Directory: <br>
 Solved by using FileFilters. Note: A for each loop iterates through the files in a directory, listing only .pdf/.doc files as specified in Filechooser class. (The differentiation between them is achieved by comparing them by their ending name) For other file formats to be supported, the extensions must be added to the FileFilter, with corresponding text-extractor blocks.
 
 Output
