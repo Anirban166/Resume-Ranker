@@ -12,7 +12,7 @@ Added via Apache POI and PDFBox libraries.
 Issues Solved 
 ---
 - Basics like keyword input and support for keyword prefixes: <br>
-Took a null string (for dynamic size) with input from a scanner object and then applied the `ReadLine()` method to that string, breaking it into words by using the `split(“ “)` method (distinguishing words by whitespace) and storing the same in a string array. To include keywords ending at periods, commas etcetra, I included prefixed and suffixed character exceptions.
+Took a null string (for dynamic size) with input from a scanner object and then applied the `ReadLine()` method to that string, breaking it into words by using the `split(“ “)` method (distinguishing words by whitespace) and storing the same in a string array. To include keywords ending at periods, commas etcetera, I included prefixed and suffixed character exceptions.
 
 - Apache POI HPWF's extractor has access to reading the file by ParagraphText method, and no other methods that support reading words: <br>
 Solved by extracting contents into another file in local workspace and reading from the same.
@@ -33,4 +33,3 @@ Output
 ---
 - Added Jframe Application interface to take keywords and directory as input, and correspondingly display output in a textbox. <br>
 - Resultant output can be found on the GUI’s output textbox plus in a (log) word document file as well. <br>
- 
