@@ -25,7 +25,7 @@ class ResumeScanner(private val gui: GUI)
     private var fileCount     = filesList?.count()
 
     // Variables for the output file (will write to this) and scores corresponding to each resume: (filename, score)
-    private val fileOutput  = FileWriter(FILE_OUTPUT)    
+    private val fileOutput  = FileWriter(LOG_DIRECTORY)    
     private var scoreList   = listOf<Pair<String, Int>>()
 
     init 
