@@ -1,1 +1,8 @@
+# Ignorance of these files is, but a blessing:
 .DS_Store
+/shelf/
+/workspace.xml
+# Ignoring editor-based HTTP client requests and local storage stuff:
+/httpRequests/
+/dataSources/
+/dataSources.local.xml
