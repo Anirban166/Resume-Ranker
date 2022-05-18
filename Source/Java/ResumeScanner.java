@@ -3,17 +3,8 @@ import java.awt.*;
 import java.util.*;
 import javax.swing.*;
 import java.awt.event.*;
-
-// .doc file handling dependencies:
-import org.apache.poi.hwpf.HWPFDocument;
-import org.apache.poi.hwpf.extractor.WordExtractor;
-
-// .pdf file handling dependencies:
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.text.PDFTextStripper;
-import org.apache.pdfbox.text.PDFTextStripperByArea;
-
-// Including log4j configurator to remove corresponding log4j warnings:
+import org.apache.pdfbox.*;
+import org.apache.poi.hwpf.*;
 import org.apache.log4j.BasicConfigurator;
 
 public class ResumeScanner 
