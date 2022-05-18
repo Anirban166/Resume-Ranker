@@ -1,5 +1,4 @@
-import java.io.File;
-import java.io.FileFilter;
+import java.io.*;
 
 public class FileFilterer implements FileFilter
 {
