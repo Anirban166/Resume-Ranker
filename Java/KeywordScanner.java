@@ -29,7 +29,7 @@ public class KeywordScannerForResumeByAnirban
     {   
 		  BasicConfigurator.configure();
           // Constructing a new window (600 x 800) with a dull background:
-		  JFrame jf = new JFrame("Keyword Scanner Menu");
+		  JFrame jf = new JFrame("Keyword-based Resume Scanner (V1)");
 		  jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	      jf.setSize(600, 800);
 	      JPanel jpanel = new JPanel();
@@ -37,13 +37,13 @@ public class KeywordScannerForResumeByAnirban
 	      jpanel.setLayout(null);
 
           // Adding labels for the GUI:
-	      LabelOne = new JLabel("Resume Scanner :");
+	      LabelOne = new JLabel("Keyword-based Resume Scanner");
 	      LabelOne.setFont(new Font("Comic Sans", Font.BOLD, 20));
 	      LabelOne.setForeground(Color.white);
-	      LabelTwo = new JLabel("Keywords:");
+	      LabelTwo = new JLabel("Keywords: ");
 	      LabelTwo.setFont(new Font("Comic Sans", Font.BOLD, 18));
 	      LabelTwo.setBounds(10, 60, 400, 20);
-	      LabelThree = new JLabel("Directory :");
+	      LabelThree = new JLabel("Directory: ");
 	      LabelThree.setBounds(10, 90, 400, 20);
 	      LabelThree.setFont(new Font("Comic Sans", Font.BOLD, 18));
 
@@ -56,11 +56,11 @@ public class KeywordScannerForResumeByAnirban
 	      OutputTextArea.setBounds(10, 160, 550, 600);
 
 	      // Adding button to display results on click:
-	      JButton ButtonToDisplay = new JButton("Display Results :");		  
+	      JButton ButtonToDisplay = new JButton("Display Results!");		  
 	      ButtonToDisplay.setBounds(10, 120, 210, 30);
 	      ButtonToDisplay.setFont(new Font("Comic Sans", Font.BOLD, 15));
           
-		  // Adding all the components onto the Jframe window:
+		  // Adding all the highestScoreonents onto the Jframe window:
 	      jpanel.add(LabelOne); 
 	      jpanel.add(LabelTwo);
 	      jpanel.add(LabelThree);
@@ -76,15 +76,16 @@ public class KeywordScannerForResumeByAnirban
 	        @Override
 	        public void actionPerformed(ActionEvent e) 
 	        {	
+				// Implementing this solely for the button's actions.
 			   	try
 	        	{	
-				  	// Taking whitespace-separated keywords as input from my first text field and storing it as a string:
-	        	  	String key = InputTextFieldOne.getText();
-				  	// Dividing (splits based on whitespace) input string of keywords into a string array composed of keywords:
-				  	String[] keywords = key.split(" ");
-			      	int keywordCount = 0, filecount = 0, comp = 0;
+				  	// Taking whitespace-separated keywords as input from my first text field and storing them as a string:
+	        	  	String keywordString = InputTextFieldOne.getText();
+				  	// Dividing (splits based on a blank space) the input string of keywords into a string array composed of keywords:
+				  	String[] keywords = keywordString.split(" ");
+			      	int keywordCount = 0, fileCount = 0, highestScore = 0;
 				  
-				  	// Sanity check (console):
+				  	// Sanity check for the entered keywords: (printed to console)
 				  	for(String d: keywords)
 				  	{   
 						System.out.print(d);
@@ -94,16 +95,16 @@ public class KeywordScannerForResumeByAnirban
 					String directory = InputTextFieldTwo.getText();		
 					File dir = new File(directory);
 					File[] fileslist = dir.listFiles(new FileFilterer());
-					FileWriter foutput = new FileWriter("./ResumeRanker-RunInformation.doc"); // Emplace log in current directory.
+					FileWriter foutput = new FileWriter("./ResumeRanker-RunInformation.doc"); // Emplacing log in current directory.
 					foutput.write("Total number of keywords: " + keywordCount);
 					OutputTextArea.append("Total number of keywords: " + keywordCount);
 					
 					for(File f : fileslist)
 				    {
-				   		// .doc(x) resumes
+				   		// .doc(<-x) resumes
 				      	if(f.getName().endsWith(".doc")) 
 				      	{   
-							filecount++;
+							fileCount++;
 				          	WordExtractor extractor = null;
 				          	try
 				          	{   
@@ -120,47 +121,49 @@ public class KeywordScannerForResumeByAnirban
 				                String lines[] = fileData;
 					            for(String line : lines) 
 					            {      
-					         		String check[] = {}; 
+					         		String check[] = {}; // String array to store all the words from the file.
 					         	    check = line.split(" ");  
 					         	    for(String word : check) 
 					         	    {
-					         	    	for(String k : keywords) // k < total no. of keywords -> check this.
+					         	    	for(String k : keywords)
 					         	        {	 
 					         	        	if(word.equals(k)) // Keyword in search is a match against the current iteration's string.
 					         	            {
-					         	        	    System.out.print("Keyword '" + k + "' is found!\n");
-					         	        	    foutput.write("Keyword '" + k + "' is found!\n");
-					         	        	    OutputTextArea.append("Keyword '" + k + "' is found!\n");
+					         	        	    System.out.print("Keyword '" + k + "' was found!\n");
+					         	        	    foutput.write("Keyword '" + k + "' was found!\n");
+					         	        	    OutputTextArea.append("Keyword '" + k + "' was found!\n");
 					         	                count++;
 					         	            }
-					         	        } // End of word comparison
-					         	    }   // End of word checking
-					         	}     // End of line checks   
+					         	        } // End of word highestScorearison
+					         	    }    // End of word checking
+					         	}       // End of line checks   
 				                 
-				              	System.out.println("Total keywords found (resume strength): " + count + "\n");
-				              	foutput.write("Total number of keywords found in " + f.getName() + " : " + count + "\n");
-				              	OutputTextArea.append("Total number of keywords found in " + f.getName() + " : " + count + "\n");
-								comp = (count > comp) ? count : comp;
+								System.out.println("Total keywords found (resume strength): " + count + "\n");
+								foutput.write("Total number of keywords found in '" + f.getName() + "': " + count + "\n");
+								OutputTextArea.append("Total number of keywords found in '" + f.getName() + "': " + count + "\n");
+								highestScore = (count > highestScore) ? count : highestScore;
 				              	if(!count)
 				              	{	
-									foutput.write("No keywords found in this resume.\n");
-				              		OutputTextArea.append("No keywords found in this resume.\n");
+									foutput.write("No keywords were found in this resume!\n");
+				              		OutputTextArea.append("No keywords were found in this resume!\n");
 								}
 				                // System.out.println(keyword.length);
 				        	}  // End of external try block
-				          	catch(Exception exep)
+				          	catch(Exception e)
 				          	{
-				            	exep.printStackTrace();
+				            	e.printStackTrace();
 				          	}  
 				      	}	 
-				     	//------------------------------------else for pdf---------------------------------------//
+
+				     	// .pdf resumes
 				      	else if(f.getName().endsWith(".pdf"))
-				      	{   filecount++;
+				      	{   
+							fileCount++;
 				    	  	try(PDDocument document = PDDocument.load(f)) 
 				          	{   
-								System.out.println("\nOpening Resume : "+f.getName()+"(pdf format)\n");
-				              	foutput.write("\nOpening Resume : "+f.getName()+"(pdf format)\n");
-				              	OutputTextArea.append("\nOpening Resume : "+f.getName()+"(pdf format)\n");
+								System.out.println("Opening the resume '" + f.getName() + "' (pdf format)\n");
+				              	foutput.write("\nOpening the resume '" + f.getName() + "' (pdf format)\n");
+				              	OutputTextArea.append("\nOpening the resume '" + f.getName() + "' (pdf format)\n");
 				              	int count = 0;
 				          	
 				              	document.getClass();
@@ -169,293 +172,250 @@ public class KeywordScannerForResumeByAnirban
 				              	{
 				                	PDFTextStripperByArea stripper = new PDFTextStripperByArea(); 
 				                	stripper.setSortByPosition(true);
-
 				                	PDFTextStripper tStripper = new PDFTextStripper();
-
 				                	String pdfFileInText = tStripper.getText(document);
-
-				  				// split by whitespace
+				  					// Splitting lines in the pdf:
 				                	String lines[] = pdfFileInText.split("\\r?\\n");
 				                	for(String line : lines) 
 				                	{      
-				         		    	String check[] = {}; //String array to put all words from file, finally done (^ ^) 
-				         	        	check = line.split(" ");  //check=words now, split line by blankspace 
+				         		    	String check[] = {};
+				         	        	check = line.split(" ");
 				         	        	for(String word : check) 
 				         	        	{
-				         	                for(String k : keywords) // k < total no. of keywords -> check this.
+				         	                for(String k : keywords)
 				         	                {	 
-				         	        	    	if(word.equals(k))   //Search for the given word
+				         	        	    	if(word.equals(k))
 				         	                    {
-				         	        	    	  System.out.print("Keyword '"+k+"' is found!\n");  
-				         	        	    	  foutput.write("Keyword '"+k+"' is found!\n");
-				         	        	    	  OutputTextArea.append("Keyword '"+k+"' is found!\n");
-				         	                      count++;     //If Present increase the count by one (considering similar weightage)
-				         	                     // comp[compinc++]=count;
+													System.out.print("Keyword '" + k + "' was found!\n");
+													foutput.write("Keyword '" + k + "' was found!\n");
+													OutputTextArea.append("Keyword '" + k + "' was found!\n");
+				         	                      	count++;
 				         	                    }
 				         	                }
 				         	          	}
 				         	        }       	
 
-				                } // doc encryption block end
-				              	System.out.println("Total keywords found / resume strength = "+count+"\n");
-				              	foutput.write("Total number of keywords found in "+f.getName()+" : "+count+"\n");
-				              	OutputTextArea.append("Total number of keywords found in "+f.getName()+" : "+count+"\n");
-				              	comp = (count > comp) ? count : comp;
+				                }
+
+								System.out.println("Total keywords found (resume strength): " + count + "\n");
+								foutput.write("Total number of keywords found in '" + f.getName() + "': " + count + "\n");
+								OutputTextArea.append("Total number of keywords found in '" + f.getName() + "': " + count + "\n");
+				              	highestScore = (count > highestScore) ? count : highestScore;
 				              	if(!count)
 				              	{ 
-									foutput.write("No keywords found in this resume.\n");
-				              		OutputTextArea.append("No keywords found in this resume.\n"); }
-				              	}   // pdf try end
-				      }
-				      else
-				      System.out.print("No doc/pdf files found in the specified directory");	
+									foutput.write("No keywords were found in this resume!\n");
+				              		OutputTextArea.append("No keywords were found in this resume!\n");
+				              	}
+							}
+				        }
+				        else System.out.print("No .doc/.pdf files were found in the specified directory!");	
 				    }	
-					foutput.write("\nTotal number of files scanned : "+filecount);
-					OutputTextArea.append("\nTotal number of files scanned : "+filecount);
-					foutput.write("\nHighest number of keywords found in a resume : "+comp);
-					OutputTextArea.append("\nHighest number of keywords found in a resume : "+comp);
+					foutput.write("\nTotal number of files scanned: " + fileCount);
+					OutputTextArea.append("\nTotal number of files scanned: " + fileCount);
+					foutput.write("\nHighest number of keywords found in a resume: " + highestScore);
+					OutputTextArea.append("\nHighest number of keywords found in a resume: " + highestScore);
 					/* int big = 0;
-					for(int x = 0; x < filecount ; x++)
+					for(int x = 0; x < fileCount ; x++)
 					{
-						big = (comp[x] > big) ? comp[x] : big;	
+						big = (highestScore[x] > big) ? highestScore[x] : big;	
 					}
 					foutput.write("\n Resume with the highest strength or maximum number of keywords is : " + Resume); */
 					foutput.close();
 	            }
-	          catch(Exception ae){}
+	          	catch(Exception e) {}
 	        }
-		});
+		}); // End of Action Listener (ButtonToDisplay)
 		
-		// Second loop:  
-		System.out.print("Enter keywords you want to search, seperated by a space each.");
+		// Taking the actual input (using a Scanner object) and repeating the process:
+		System.out.print("Please enter the keywords you want to search (seperated by a space each) and the directory where you would want to scan the resumes (on the next line, or after pressing Enter).");
 		Scanner sin = new Scanner(System.in);
-		String x = sin.nextLine();
-		String[] keywords = x.split(" ");
-		sin.close();
-		
-		int keywordCount, filecount = 0, comp = 0;
-		for(String d: keywords)
-		{   
-			System.out.print(d); // Debugging on console
-			keywordCount++;
-		}
-
-		//----------------------------------Define Keywords above----------------------------------//
-		String directory = "./Resumes";
+		String keywordString = sin.nextLine();
+		String[] keywords = keywordString.split(" ");
+        
+		String directory = sin.nextLine();
 		File dir = new File(directory);
 		File[] fileslist = dir.listFiles(new FileFilterer());
-	    
-		FileWriter foutput = new FileWriter("F:/Resume_Ranker.doc"); // Change to location of output text file
+		FileWriter foutput = new FileWriter("./ResumeRanker-RunInformation.doc");
+		foutput.write("Total number of keywords: " + keywordCount);
+		OutputTextArea.append("Total number of keywords: " + keywordCount);	
+		sin.close(); // Closing the Scanner after both inputs have been taken (using only of them to avoid stream issues) and processed.
 		
-		foutput.write("Total no. of keywords : " + keywordCount);
-		OutputTextArea.append("Total no. of keywords : " + keywordCount);
-		
-		for (File f : fileslist)
-	    {
-	   //------------------------------------------doc---------------------------------------------//
-	      if(f.getName().endsWith(".doc")) 
-	      {   
-			  filecount++;
-	          WordExtractor extractor = null;
-	          try
-	          {   System.out.println("Opening Resume : " + f.getName() + "(word format)\n");
-	              foutput.write("\nOpening Resume : " + f.getName() + "(word format)\n");
-	              int count=0;
-	          
-	              FileInputStream fis = new FileInputStream(f.getAbsolutePath());
-	              HWPFDocument document = new HWPFDocument(fis); 
-	              extractor = new WordExtractor(document);
-	              String[] fileData = extractor.getParagraphText(); //Get all text from doc
+		for(File f : fileslist)
+		{
+			  // Docs
+			  if(f.getName().endsWith(".doc")) 
+			  {   
+				  fileCount++;
+				  WordExtractor extractor = null;
+				  try
+				  {   
+					System.out.println("Opening the resume '" + f.getName() + "' (word format)\n");
+					foutput.write("\nOpening the resume '" + f.getName() + "' (word format)\n");
+					OutputTextArea.append("\nOpening the resume '" + f.getName() + "' (word format)\n");
+					int count = 0;
+			  
+					FileInputStream fis = new FileInputStream(f.getAbsolutePath());
+					HWPFDocument document = new HWPFDocument(fis); 
+					extractor = new WordExtractor(document);
+					String[] fileData = extractor.getParagraphText();
 	 
-	                  	  String lines[] = fileData;
-		                  for (String line : lines) 
-		                  {      
-		         		     String check[] = {}; 
-		         	         check = line.split(" ");  
-		         	          for(String word : check) 
-		         	          {
-		         	                 for(String k : keywords) // k < total no. of keywords -> check this.
-		         	                 {	 
-		         	        	        if(word.equals(k))   //Search for the given word
-		         	                    {
-		         	        	    	  System.out.print("Keyword '"+k+"' is found!\n");
-		         	        	    	  foutput.write("Keyword '"+k+"' is found!\n");
-		         	                      count++;     //If Present increase the count by one (considering similar weightage)
-		         	                     // comp[compinc++]=count;
-		         	                    }
-		         	                 }//word comparer for end
-		         	          }//word checker for end
-		         	         }//line checker for end    
-	                
-	              OutputTextArea.append("Total number of keywords found in "+f.getName()+" : "+count+"\n");
-	              foutput.write("Total number of keywords found in "+f.getName()+" : "+count+"\n");
-	              if(count>comp) comp=count;
-	              // System.out.println(keyword.length); //Debug Statement - No. of keywords
-	                  
-	          }//external try end, catch next
-	          catch(Exception exep)
-	          {
-	              exep.printStackTrace();
-	          }  
-	      }	 
-	     //------------------------------------else for pdf---------------------------------------//
-	      else if(f.getName().endsWith(".pdf"))
-	      {   filecount++;
-	    	  try (PDDocument document = PDDocument.load(f)) 
-	          {   System.out.println("\nOpening Resume : "+f.getName()+"(pdf format)\n");
-	              foutput.write("\nOpening Resume : "+f.getName()+"(pdf format)\n");
-	            	int count=0;
-	          	
-	              document.getClass();
+					String lines[] = fileData;
+					for(String line : lines) 
+					{      
+						 String check[] = {};
+						 check = line.split(" ");  
+						 for(String word : check) 
+						 {
+							 for(String k : keywords)
+							 {	 
+								 if(word.equals(k))
+								 {
+									 System.out.print("Keyword '" + k + "' was found!\n");
+									 foutput.write("Keyword '" + k + "' was found!\n");
+									 OutputTextArea.append("Keyword '" + k + "' was found!\n");
+									 count++;
+								 }
+							 }
+						 }
+					 }  
+					System.out.println("Total keywords found (resume strength): " + count + "\n");
+					foutput.write("Total number of keywords found in '" + f.getName() + "': " + count + "\n");
+					OutputTextArea.append("Total number of keywords found in '" + f.getName() + "': " + count + "\n");
+					highestScore = (count > highestScore) ? count : highestScore;
+				}
+				catch(Exception e)
+				{
+					e.printStackTrace();
+				}  
+			  } 
 
-	              if (!document.isEncrypted()) 
-	              {
-	                  PDFTextStripperByArea stripper = new PDFTextStripperByArea(); 
-	                  stripper.setSortByPosition(true);
+			  // Pdfs
+			  else if(f.getName().endsWith(".pdf"))
+			  {   
+				  fileCount++;
+				  try(PDDocument document = PDDocument.load(f)) 
+				  {   
+					  System.out.println("Opening the resume '" + f.getName() + "' (pdf format)\n");
+					  foutput.write("\nOpening the resume '" + f.getName() + "' (pdf format)\n");
+					  OutputTextArea.append("\nOpening the resume '" + f.getName() + "' (pdf format)\n");
+					  int count = 0;
+					  document.getClass();
 
-	                  PDFTextStripper tStripper = new PDFTextStripper();
+					  if(!document.isEncrypted()) 
+					  {
+						PDFTextStripperByArea stripper = new PDFTextStripperByArea(); 
+						stripper.setSortByPosition(true);
+						PDFTextStripper tStripper = new PDFTextStripper();
+						String pdfFileInText = tStripper.getText(document);
+						String lines[] = pdfFileInText.split("\\r?\\n");
+						for(String line : lines) 
+						{      
+							 String check[] = {};
+							 check = line.split(" ");
+							 for(String word : check) 
+							 {
+								 for(String k : keywords)
+								 {	 
+									 if(word.equals(k))
+									 {
+										System.out.print("Keyword '" + k + "' was found!\n");
+										foutput.write("Keyword '" + k + "' was found!\n");
+										OutputTextArea.append("Keyword '" + k + "' was found!\n");
+										count++;
+									 }
+								 }
+							 }
+						 }       	
 
-	                  String pdfFileInText = tStripper.getText(document);
+					}
 
-	  				// split by whitespace
-	                  String lines[] = pdfFileInText.split("\\r?\\n");
-	                  for (String line : lines) 
-	                  {      
-	         		     String check[] = {}; //String array to put all words from file, finally done (^ ^) 
-	         	         check = line.split(" ");  //check=words now, split line by blankspace 
-	         	          for(String word : check) 
-	         	          {
-	         	                 for(String k : keywords) // k < total no. of keywords -> check this.
-	         	                 {	 
-	         	        	        if (word.equals(k))   //Search for the given word
-	         	                    {
-	         	        	    	  System.out.print("Keyword '"+k+"' is found!\n");  
-	         	        	    	  foutput.write("Keyword '"+k+"' is found!\n");
-	         	                      count++;     //If Present increase the count by one (considering similar weightage)
-	         	                     // comp[compinc++]=count;
-	         	                    }
-	         	                 }//word comparer for end
-	         	          }//word checker for end
-	         	         }//line checker for end        	
-	                 }//encryptdoc end
-	              System.out.println("Total keywords found / resume strength = "+count+"\n");
-	              foutput.write("Total number of keywords found in "+f.getName()+" : "+count+"\n");
-	              if(count>comp) 
-	              comp=count; 
-
-	              }//pdf try end
-	      }
-	      else
-	      System.out.print("No doc/pdf files found in the specified directory");	
-	    }	
-		foutput.write("\nTotal number of files scanned : "+filecount);
-		foutput.write("\nHighest number of keywords found in a resume : "+comp);
-	
-		/*int x,big=0;
-		for(x=0; x < filecount ; x++)
-		{ if(comp[x]>big) 
-			big=comp[x];
-		}
-		
-		foutput.write("\n Resume with the highest strength / maximum no. of keywords found : "+Resume);*/
+					System.out.println("Total keywords found (resume strength): " + count + "\n");
+					foutput.write("Total number of keywords found in '" + f.getName() + "': " + count + "\n");
+					OutputTextArea.append("Total number of keywords found in '" + f.getName() + "': " + count + "\n");
+					highestScore = (count > highestScore) ? count : highestScore;
+				  }
+			  }
+			  else System.out.print("No .doc/.pdf files were found in the specified directory!");	
+		}	
+		foutput.write("\nTotal number of files scanned: " + fileCount);
+		OutputTextArea.append("\nTotal number of files scanned: " + fileCount);
+		foutput.write("\nHighest number of keywords found in a resume: " + highestScore);
+		OutputTextArea.append("\nHighest number of keywords found in a resume: " + highestScore);		
 		foutput.close();
 		
-	
-		
-//------------------------------------------------------------------------------------------------------------		
-		String bestresumename = null;
-		
-		//2nd round to find the best resume among all based on keywords.
-		for (File t : fileslist)
+		// Final iteration just to find the name of the resume with the highest score (since only the scores were collected, comparing against all the scores in this run) - gonna remove this soon (redundant after all)
+		String bestResumeName = null;
+		for(File t : fileslist)
 	    {
-	   //------------------------------------------doc---------------------------------------------//
+	      // Docs
 	      if(t.getName().endsWith(".doc")) 
-	      {   filecount++;
+	      {   
+			  fileCount++;
 	          WordExtractor extractor = null;
 	          try
 	          {   
 	              int count = 0;
-	          
 	              FileInputStream fis = new FileInputStream(t.getAbsolutePath());
 	              HWPFDocument document = new HWPFDocument(fis); 
 	              extractor = new WordExtractor(document);
-	              String[] fileData = extractor.getParagraphText(); //Get all text from doc
-	 
-	                  	  String lines[] = fileData;
-		                  for (String line : lines) 
-		                  {      
-		         		     String check[] = {}; 
-		         	         check = line.split(" ");  
-		         	          for(String word : check) 
-		         	          {
-		         	                 for(String k:keywords) // k < total no. of keywords -> check this.
-		         	                 {	 
-		         	        	        if(word.equals(k))   //Search for the given word
-		         	                    {
-		         	                      count++;     
-		         	                    }
-		         	                 }//word comparer for end
-		         	          }//word checker for end
-		         	         if(comp==count) 
-				             bestresumename=t.getName(); 
-		         	         }//line checker for end    
-	                  
-		                  OutputTextArea.append("Highest ranked resume filtered among all based on maximum keywords : "+bestresumename);
-			  	  		  foutput.write("\nBest/Highest Ranked Resume filtered among selected resumes : "+bestresumename);
-	          }//external try end, catch next
-	          catch (Exception exep)
+	              String[] fileData = extractor.getParagraphText();
+	              String lines[] = fileData;
+		          for(String line : lines) 
+		          {      
+		        	String check[] = {}; 
+		         	check = line.split(" ");  
+		         	for(String word : check) 
+		         	{
+		         	    for(String k : keywords)
+		         	    {	 
+		         	        if(word.equals(k)) count++;     
+		         	    }
+		         	}
+		         	if(highestScore == count) bestResumeName = t.getName(); // Obtaining and storing the name of the highest scoring resume.
+		          }     
+		          OutputTextArea.append("Highest ranked resume (based on having the maximum number of keywords) filtered among all candidates is the one called '" + bestResumeName + "'.");
+			  	  foutput.write("Highest ranked resume (based on having the maximum number of keywords) filtered among all candidates is the one called '" + bestResumeName + "'.");
+	          }
+	          catch(Exception e)
 	          {
-	              exep.printStackTrace();
+	            e.printStackTrace();
 	          }  
-	          
 	      }	 
-	     //------------------------------------else for pdf---------------------------------------//
+	      // Pdfs
 	      else if(t.getName().endsWith(".pdf"))
-	      {   filecount++;
-	    	  try (PDDocument document = PDDocument.load(t)) 
+	      {   
+			  fileCount++;
+	    	  try(PDDocument document = PDDocument.load(t)) 
 	          {   
-	            	int count=0;
-	          	
-	              document.getClass();
+	            int count = 0;
+	            document.getClass();
 
-	              if (!document.isEncrypted()) 
-	              {
-	                  PDFTextStripperByArea stripper = new PDFTextStripperByArea(); 
-	                  stripper.setSortByPosition(true);
-
-	                  PDFTextStripper tStripper = new PDFTextStripper();
-
-	                  String pdfFileInText = tStripper.getText(document);
-
-	  				// split by whitespace
-	                  String lines[] = pdfFileInText.split("\\r?\\n");
-	                  for (String line : lines) 
-	                  {      
-	         		     String check[] = {}; //String array to put all words from file, finally done (^ ^) 
-	         	         check = line.split(" ");  //check=words now, split line by blankspace 
-	         	          for(String word : check) 
-	         	          {
-	         	                 for(String k : keywords) // k < total no. of keywords -> check this.
-	         	                 {	 
-	         	        	        if(word.equals(k))   //Search for the given word
-	         	                    {
-	         	                      count++;     //If Present increase the count by one (considering similar weightage)
-	         	                     // comp[compinc++]=count;
-	         	                    }
-	         	                 }//word comparer for end
-	         	          }//word checker for end
-	         	         if(comp==count) 
-	                         bestresumename=t.getName();
-	         	         }//line checker for end        	
-	                 }//encryptdoc end
-	              
-	              OutputTextArea.append("Highest ranked resume filtered among all based on maximum keywords : "+bestresumename);
-	  	  		  foutput.write("\nBest/Highest Ranked Resume filtered among selected resumes : "+bestresumename);
-	              }//pdf try end
+	            if(!document.isEncrypted()) 
+	            {
+	                PDFTextStripperByArea stripper = new PDFTextStripperByArea(); 
+	                stripper.setSortByPosition(true);
+	                PDFTextStripper tStripper = new PDFTextStripper();
+	                String pdfFileInText = tStripper.getText(document);
+	                String lines[] = pdfFileInText.split("\\r?\\n");
+	                for(String line : lines) 
+	                {      
+	         		    String check[] = {};
+	         	        check = line.split(" ");
+	         	        for(String word : check) 
+	         	        {
+	         	            for(String k : keywords)
+	         	            {	 
+	         	        		if(word.equals(k)) count++;
+	         	            }
+	         	        }
+	         	        if(highestScore == count) bestResumeName = t.getName();
+	         	    }       	
+	            }
+				OutputTextArea.append("Highest ranked resume (based on having the maximum number of keywords) filtered among all candidates is the one called '" + bestResumeName + "'.");
+				foutput.write("Highest ranked resume (based on having the maximum number of keywords) filtered among all candidates is the one called '" + bestResumeName + "'.");
+	          }
 	      }	
 	    }	
 		foutput.close();	
-    }
-		
+    }	
 }
-
