@@ -5,6 +5,6 @@ fun main()
     var gui: GUI? = null
     gui = GUI 
     {
-        gui?.let { KeywordScanner(it) }
+        gui?.let { ResumeScanner(it) }
     }.apply { isVisible = true }
 }

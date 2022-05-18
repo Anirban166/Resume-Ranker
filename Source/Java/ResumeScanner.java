@@ -1,5 +1,3 @@
-package ani;
-
 import java.io.*;
 import java.awt.*;
 import java.util.*;
@@ -19,7 +17,7 @@ import org.apache.pdfbox.text.PDFTextStripperByArea;
 // Including log4j configurator to remove corresponding log4j warnings:
 import org.apache.log4j.BasicConfigurator;
 
-public class KeywordScannerForResumeByAnirban 
+public class ResumeScanner 
 {	
 	public static TextArea OutputTextArea;
     public static JLabel LabelOne, LabelTwo, LabelThree;
