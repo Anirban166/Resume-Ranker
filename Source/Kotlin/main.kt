@@ -4,8 +4,10 @@ const val LOG_DIRECTORY = "./logFilePath"
 fun main() 
 {
     var gui: GUI? = null
+
     gui = GUI 
     {
         gui?.let { ResumeScanner(it) }
-    }   .apply   { isVisible = true  }
+    }   .apply   { isVisible = true  }   
+    
 }
