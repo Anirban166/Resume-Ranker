@@ -40,7 +40,7 @@ class GUI(val onClickCallback: () -> Unit) : JFrame("Keyword-based Resume Scanne
 
         val jPanel = JPanel().also( 
         {
-            it.background = Color.getHSBColor(25F, 130F, 95F)
+            it.background = Color.getHSBColor(0.4F, 0.1F, 0.2F)
             it.layout = null
         })
 
@@ -48,13 +48,15 @@ class GUI(val onClickCallback: () -> Unit) : JFrame("Keyword-based Resume Scanne
         val keywordTF = JTextField().also( 
         {
             it.setBounds(120, 60, 100, 20)
+            it.background = Color.getHSBColor(0.4F, 0.1F, 0.7F)
             jPanel.add(it)
         })
 
         JLabel("Keywords: ").also( 
         {
             it.setBounds(10, 60, 400, 20)
-            it.font = defaultFont(18)
+            it.font = defaultFont(15)
+            it.setForeground(Color.getHSBColor(76F, 99F, 99F))
             jPanel.add(it)
         })
 
@@ -62,13 +64,15 @@ class GUI(val onClickCallback: () -> Unit) : JFrame("Keyword-based Resume Scanne
         val directoryTF = JTextField().also( 
         {
             it.setBounds(120, 90, 100, 20)
+            it.background = Color.getHSBColor(0.4F, 0.1F, 0.7F)
             jPanel.add(it)
         })
 
         JLabel("Directory: ").also( 
         {
             it.setBounds(10, 90, 400, 20)
-            it.font = defaultFont(18)
+            it.font = defaultFont(15)
+            it.setForeground(Color.getHSBColor(76F, 99F, 99F))
             jPanel.add(it)
         })
 
@@ -76,6 +80,7 @@ class GUI(val onClickCallback: () -> Unit) : JFrame("Keyword-based Resume Scanne
         resultTA = TextArea().also( 
         {
             it.setBounds(10, 160, 550, 600)
+            it.background = Color.getHSBColor(0.4F, 0.1F, 0.75F)
             jPanel.add(it)
         })
 
@@ -83,7 +88,8 @@ class GUI(val onClickCallback: () -> Unit) : JFrame("Keyword-based Resume Scanne
         JButton("Display Results!").also( 
         {
             it.setBounds(10, 120, 210, 30)
-            it.font = defaultFont(18)
+            it.font = defaultFont(15)
+            it.foreground = Color.getHSBColor(0.42F, 0.39F, 0.25F)
 
             it.addActionListener( 
             {

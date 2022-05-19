@@ -93,7 +93,7 @@ public class ResumeScanner
 				{	
 				    foutput.write("No keywords were found in this resume!\n"); OutputTextArea.append("No keywords were found in this resume!\n");
 				}
-			    }   // End of internal try block (61)
+			    }   // End of internal try block (65)
 			    catch(Exception e) { e.printStackTrace(); }  
 			}	 
 
@@ -139,13 +139,13 @@ public class ResumeScanner
 			    }
 			}
 			else System.out.print("No .doc/.pdf files were found in the specified directory!");	
-		    }  // End of all iterations of the for loop (done with all the concerned files)
+		    }  // End of all iterations of the for-loop (done with all the concerned files)
 		    foutput.write("\nTotal number of files scanned: " + fileCount); OutputTextArea.append("\nTotal number of files scanned: " + fileCount);
 		    foutput.write("\nHighest number of keywords found in a resume: " + highestScore); OutputTextArea.append("\nHighest number of keywords found in a resume: " + highestScore);
 		    foutput.close();
 	        }
 		catch(Exception ex) { ex.printStackTrace(); } 
 	    }
-	}); // End of Action Listener (38)	
+	}); // End of Action Listener (42)	
     }
 }
