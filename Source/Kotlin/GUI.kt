@@ -47,7 +47,7 @@ class GUI(val onClickCallback: () -> Unit) : JFrame("Keyword-based Resume Scanne
         // Text field for the keyword-string input:
         val keywordTF = JTextField().also( 
         {
-            it.setBounds(120, 60, 100, 20)
+            it.setBounds(95, 60, 470, 20)
             it.background = Color.getHSBColor(0.4F, 0.1F, 0.7F)
             jPanel.add(it)
         })
@@ -55,7 +55,7 @@ class GUI(val onClickCallback: () -> Unit) : JFrame("Keyword-based Resume Scanne
         JLabel("Keywords: ").also( 
         {
             it.setBounds(10, 60, 400, 20)
-            it.font = defaultFont(15)
+            it.font = defaultFont(16)
             it.setForeground(Color.getHSBColor(76F, 99F, 99F))
             jPanel.add(it)
         })
@@ -63,15 +63,15 @@ class GUI(val onClickCallback: () -> Unit) : JFrame("Keyword-based Resume Scanne
         // Text field for the directory input:
         val directoryTF = JTextField().also( 
         {
-            it.setBounds(120, 90, 100, 20)
+            it.setBounds(95, 90, 470, 20)
             it.background = Color.getHSBColor(0.4F, 0.1F, 0.7F)
             jPanel.add(it)
         })
 
         JLabel("Directory: ").also( 
         {
-            it.setBounds(10, 90, 400, 20)
-            it.font = defaultFont(15)
+            it.setBounds(14, 90, 400, 20)
+            it.font = defaultFont(16)
             it.setForeground(Color.getHSBColor(76F, 99F, 99F))
             jPanel.add(it)
         })
@@ -85,9 +85,9 @@ class GUI(val onClickCallback: () -> Unit) : JFrame("Keyword-based Resume Scanne
         })
 
         // Button to launch a homing missile:
-        JButton("Display Results!").also( 
+        JButton("Display Results").also( 
         {
-            it.setBounds(10, 120, 210, 30)
+            it.setBounds(190, 120, 190, 30)
             it.font = defaultFont(15)
             it.foreground = Color.getHSBColor(0.42F, 0.39F, 0.25F)
 
