@@ -42,10 +42,10 @@ class ResumeScanner(private val gui: GUI)
             scoreList = keywordFinder(filesList)
             val mostKeywordFound = scoreList.maxOf { it.second }
 
-            val bestResume = scoreList.find 
+            val bestResume = scoreList.find( 
             {
                 it.second == mostKeywordFound
-            }
+            })
 
             fileOutput.write("Post filtering, the highest ranked resume among the lot is: ${bestResume?.first}")
             gui.updateUI("Post filtering, the highest ranked resume among the lot is: ${bestResume?.first}")
@@ -58,7 +58,7 @@ class ResumeScanner(private val gui: GUI)
     private fun keywordFinder(inputFileList: Array<out File>?): MutableList<Pair<String, Int>> 
     {
         val fileScoreList: MutableList<Pair<String, Int>> = mutableListOf()
-        inputFileList?.forEach 
+        inputFileList?.forEach( 
         {   file ->
             when 
             {
@@ -93,21 +93,20 @@ class ResumeScanner(private val gui: GUI)
                     writeToFileAndUI("Total number of keywords found in the resume '${file.name}': $score\n")
                 }
             }
-        }
+        })
         return fileScoreList
     }
 
     // Function to compute the scores for each resume:
     private fun calculateScore(inputList: List<String>) : Int 
     {
-        val score = inputList.count 
-
+        val score = inputList.count( 
         { 
             word ->
             if (keywordList.contains(word))
                 writeToFileAndUI("Keyword '$word' was found!")
             keywordList.contains(word)
-        }
+        })
 
         if(score == 0)
             writeToFileAndUI("No keywords were found in this resume!")
@@ -127,14 +126,14 @@ class ResumeScanner(private val gui: GUI)
     {
         override fun accept(pathname : File?): Boolean 
         {
-            listOf("doc", "pdf").forEach 
+            listOf("doc", "pdf").forEach( 
             {
                 if(pathname != null) 
                 {
                     if(pathname.name.lowercase(Locale.getDefault()).endsWith(it))
                         return true
                 }
-            }
+            })
             return false
         }
     }

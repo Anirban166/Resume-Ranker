@@ -5,9 +5,9 @@ fun main()
 {
     var gui: GUI? = null
 
-    gui = GUI 
+    gui = GUI(
     {
         gui?.let { ResumeScanner(it) }
-    }   .apply   { isVisible = true  }   
+    })    .apply { isVisible = true  } 
     
 }
