@@ -1,21 +1,17 @@
+package utils
 import java.util.*
 import java.io.File
 import java.io.FileFilter
 import java.io.FileWriter
 import java.io.FileInputStream
 import java.util.regex.Pattern
-import org.apache.pdfbox.Loader
 import org.apache.poi.hwpf.HWPFDocument
 import org.apache.pdfbox.pdmodel.PDDocument
 import org.apache.pdfbox.text.PDFTextStripper
 import org.apache.poi.hwpf.extractor.WordExtractor
  
-class ResumeScanner(private val gui: GUI) 
+class ResumeScanner(keyword: String, directory: String, outputDirectory: String, val updateUI: (String) -> Unit)
 {
-    // Taking my inputs from the GUI:
-    private val keyword   = gui.keyword
-    private val directory = gui.directory
-
     // Curating the lists of keywords (extracted from the input string) and desired files:
     private var keywordList = keyword.split(" ")
     private val filesList   = File(directory).listFiles(CustomFileFilter())
@@ -30,26 +26,20 @@ class ResumeScanner(private val gui: GUI)
 
     init 
     {
-        writeToFileAndUI("Total number of keywords: $totalKeywords")
-
         if(fileCount == 0 || filesList.isNullOrEmpty()) 
         {
             println("No .doc/.pdf files found in the specified directory!")
         } 
-
         else 
         {
+            writeToFileAndUI("Total number of keywords: $totalKeywords")            
             scoreList = keywordFinder(filesList)
-            val mostKeywordFound = scoreList.maxOf { it.second }
-
+            val mostKeywordsFound = scoreList.maxOf { it.second }
             val bestResume = scoreList.find( 
             {
-                it.second == mostKeywordFound
+                it.second == mostKeywordsFound
             })
-
-            fileOutput.write("Post filtering, the highest ranked resume among the lot is: ${bestResume?.first}")
-            gui.updateUI("Post filtering, the highest ranked resume among the lot is: ${bestResume?.first}")
-            
+            writeToFileAndUI("Post filtering, the highest ranked resume among the lot is: ${bestResume?.first}")
             fileOutput.close()
         }
     }
@@ -65,29 +55,22 @@ class ResumeScanner(private val gui: GUI)
                 // .doc(<-x) resumes
                 file.name.endsWith(".doc") -> 
                 {
-                    fileOutput.write("Opening the resume '${file.name}' (word format)")
-                    gui.updateUI("Opening the resume '${file.name}' (word format)")
-
+                    writeToFileAndUI("Opening the resume '${file.name}' (word format)")
                     val fileInputStream = FileInputStream(file.absolutePath)
                     val extractor = WordExtractor(HWPFDocument(fileInputStream))
                     val dataList = extractor.paragraphText.toList()
                     val score = calculateScore(dataList)
-
                     fileScoreList.add(Pair(file.name, score))
                     writeToFileAndUI("Total number of keywords found in the resume '${file.name}': $score\n")
                 }
-
                 // .pdf resumes
                 file.name.endsWith(".pdf") -> 
                 {
-                    val pdfDoc: PDDocument = Loader.loadPDF(file)
-                    fileOutput.write("Opening the resume '${file.name}' (pdf format)")
-                    gui.updateUI("Opening the resume '${file.name}' (pdf format)")
-
+                    val pdfDoc: PDDocument = PDDocument.load(file)
+                    writeToFileAndUI("Opening the resume '${file.name}' (pdf format)")
                     val rawData: String = PDFTextStripper().getText(pdfDoc)
                     val dataList = Pattern.compile("\\s+").split(rawData.trim()).toList()
                     val score = calculateScore(dataList)
-
                     fileScoreList.add(Pair(file.name, score))
                     pdfDoc.close()
                     writeToFileAndUI("Total number of keywords found in the resume '${file.name}': $score\n")
@@ -114,11 +97,11 @@ class ResumeScanner(private val gui: GUI)
         return score
     }
 
-    // Function to write to both an output file (takes the string to be written as input) and the GUI:
+    // Function to write to both an output file and the GUI: (takes the string to be written as input)
     private fun writeToFileAndUI(str : String) 
     {
         fileOutput.write(str)
-        gui.updateUI(str)
+        updateUI(str)
     }
 
     // Function to filter out files in a given directory that have 'doc' and 'pdf' extensions:
