@@ -19,6 +19,9 @@ class Repository
     private val _textArea: MutableStateFlow<String> = MutableStateFlow("")
     val textArea: MutableStateFlow<String> = _textArea
 
+    private val _isDarkTheme = MutableStateFlow(false)
+    val isDarkTheme: StateFlow<Boolean> = _isDarkTheme
+
     fun updateKeywords(keywords: String) 
     {
         _keywords.value = keywords
@@ -42,4 +45,9 @@ class Repository
     {
         _textArea.value = "${_textArea.value}$text\n"
     }
+
+    fun changeTheme(bool: Boolean)
+    {
+        _isDarkTheme.value = bool
+    }    
 }

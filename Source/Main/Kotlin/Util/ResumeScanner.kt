@@ -81,7 +81,7 @@ class ResumeScanner(keyword: String, directory: String, outputDirectory: String,
     }
 
     // Function to compute the scores for each resume:
-    private fun calculateScore(inputList: List<String>) : Int 
+    private fun calculateScore(inputList: List<String>): Int 
     {
         val score = inputList.count( 
         { 
@@ -105,9 +105,9 @@ class ResumeScanner(keyword: String, directory: String, outputDirectory: String,
     }
 
     // Function to filter out files in a given directory that have 'doc' and 'pdf' extensions:
-    inner class CustomFileFilter : FileFilter 
+    inner class CustomFileFilter: FileFilter 
     {
-        override fun accept(pathname : File?): Boolean 
+        override fun accept(pathname: File?): Boolean 
         {
             listOf("doc", "pdf").forEach( 
             {
