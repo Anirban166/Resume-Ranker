@@ -36,17 +36,14 @@ class ResumeScanner(private val gui: GUI)
         {
             println("No .doc/.pdf files found in the specified directory!")
         } 
-
         else 
         {
             scoreList = keywordFinder(filesList)
             val mostKeywordFound = scoreList.maxOf { it.second }
-
             val bestResume = scoreList.find( 
             {
                 it.second == mostKeywordFound
             })
-
             fileOutput.write("Post filtering, the highest ranked resume among the lot is: ${bestResume?.first}")
             gui.updateUI("Post filtering, the highest ranked resume among the lot is: ${bestResume?.first}")
             
@@ -67,12 +64,10 @@ class ResumeScanner(private val gui: GUI)
                 {
                     fileOutput.write("Opening the resume '${file.name}' (word format)")
                     gui.updateUI("Opening the resume '${file.name}' (word format)")
-
                     val fileInputStream = FileInputStream(file.absolutePath)
                     val extractor = WordExtractor(HWPFDocument(fileInputStream))
                     val dataList = extractor.paragraphText.toList()
                     val score = calculateScore(dataList)
-
                     fileScoreList.add(Pair(file.name, score))
                     writeToFileAndUI("Total number of keywords found in the resume '${file.name}': $score\n")
                 }
@@ -83,11 +78,9 @@ class ResumeScanner(private val gui: GUI)
                     val pdfDoc: PDDocument = Loader.loadPDF(file)
                     fileOutput.write("Opening the resume '${file.name}' (pdf format)")
                     gui.updateUI("Opening the resume '${file.name}' (pdf format)")
-
                     val rawData: String = PDFTextStripper().getText(pdfDoc)
                     val dataList = Pattern.compile("\\s+").split(rawData.trim()).toList()
                     val score = calculateScore(dataList)
-
                     fileScoreList.add(Pair(file.name, score))
                     pdfDoc.close()
                     writeToFileAndUI("Total number of keywords found in the resume '${file.name}': $score\n")
@@ -137,4 +130,4 @@ class ResumeScanner(private val gui: GUI)
             return false
         }
     }
-}   
+}
