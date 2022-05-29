@@ -81,21 +81,25 @@ class ResumeScanner(keyword: String, directory: String, outputDirectory: String,
     }
 
     // Function to compute the scores for each resume:
-    private fun calculateScore(inputList: List<String>): Int 
+    private fun calculateScore(inputList: List<String>): Int
     {
-        val score = inputList.count( 
-        { 
-            word ->
-            if (keywordList.contains(word))
-                writeToFileAndUI("Keyword '$word' was found!")
-            keywordList.contains(word)
+        val foundKeywords = mutableListOf<String>()
+        keywordList.forEach(
+        {   
+            keyword ->
+            val found = inputList.find { it == keyword }
+            if(found != null)
+            {
+                writeToFileAndUI("Keyword '$found' was found!")
+                foundKeywords.add(found)
+            }
         })
-
-        if(score == 0)
+        if(foundKeywords.isEmpty())
+        {
             writeToFileAndUI("No keywords were found in this resume!")
-
-        return score
-    }
+        }
+        return foundKeywords.count()
+    }    
 
     // Function to write to both an output file and the GUI: (takes the string to be written as input)
     private fun writeToFileAndUI(str : String) 
