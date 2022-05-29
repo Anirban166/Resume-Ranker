@@ -18,7 +18,7 @@ public class ResumeScanner
 	BasicConfigurator.configure();
 	    
         // Constructing a new window (600 x 800) with a dull background:
-        JFrame jf = new JFrame("Keyword-based Resume Scanner (V1)"); 
+        JFrame jf = new JFrame("Keyword-based Resume Ranker (V1)"); 
 	jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); jf.setSize(600, 800);
 	JPanel jpanel = new JPanel(); 
 	jpanel.setBackground(Color.getHSBColor(25, 130, 95)); jpanel.setLayout(null);
@@ -131,7 +131,7 @@ public class ResumeScanner
 				    foutput.write("No keywords were found in this resume!\n"); 
 				    OutputTextArea.append("No keywords were found in this resume!\n");
 				}
-			    }   // End of internal try block (65)
+			    }   // End of internal try block (95)
 			    catch(Exception e) { e.printStackTrace(); }  
 			}	 
 
@@ -195,6 +195,6 @@ public class ResumeScanner
 	        }
 		catch(Exception ex) { ex.printStackTrace(); } 
 	    }
-	}); // End of Action Listener (42)	
+	}); // End of Action Listener (67)	
     }
 }

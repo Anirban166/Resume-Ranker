@@ -53,23 +53,23 @@ fun DirectoryTextField(dir: String, update: (File?) -> Unit, placeholderText: St
 {
     Surface(Modifier.fillMaxWidth().defaultMinSize(minHeight = 50.dp))
     {
-        TextField(value = dir, onValueChange = { }, placeholder = { Text(placeholderText) },
-            label = { Text(text = labelText) }, singleLine = true, leadingIcon =
+        TextField(value = dir, onValueChange = {}, placeholder = { Text(placeholderText) },
+        label = { Text(text = labelText) }, singleLine = true, leadingIcon =
+        {
+            Icon(painter = painterResource("path-icon.png"), null)
+        },
+        trailingIcon =
+        {
+            IconButton(onClick =
             {
-                Icon(painter = painterResource("path-icon.png"), null)
-            },
-            trailingIcon =
+                val dir = fileChooser()
+                update(dir)
+            }, 
+            enabled = true)
             {
-                IconButton(onClick =
-                {
-                    val dir = fileChooser()
-                    update(dir)
-                }, enabled = true)
-                {
-                    Icon(painter = painterResource("folder-icon.png"), contentDescription = "FilePickerIcon")
-                }
+                Icon(painter = painterResource("folder-icon.png"), contentDescription = "FilePickerIcon")
             }
-        )
+        })
     }
 }
 

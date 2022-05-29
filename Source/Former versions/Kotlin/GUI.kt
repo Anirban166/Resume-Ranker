@@ -8,7 +8,7 @@ import javax.swing.JButton
 import javax.swing.JTextField
 import org.apache.log4j.BasicConfigurator
 
-class GUI(val onClickCallback: () -> Unit) : JFrame("Keyword-based Resume Scanner (V2)") 
+class GUI(val onClickCallback: () -> Unit): JFrame("Keyword-based Resume Ranker (V2)") 
 {
     // Avoiding initialization of the output text box early on, waiting for the dependency injection of the inputs (keywords, directory):
     private lateinit var resultTA: TextArea

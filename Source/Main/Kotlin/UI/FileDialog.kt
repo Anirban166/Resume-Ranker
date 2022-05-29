@@ -3,7 +3,7 @@ import java.io.File
 import javax.swing.JFileChooser
 import javax.swing.filechooser.FileSystemView
 
-fun fileChooser() : File?
+fun fileChooser(): File?
 {
     val jfc = JFileChooser(FileSystemView.getFileSystemView().defaultDirectory)
     jfc.dialogTitle = "Choose a directory"
@@ -14,7 +14,8 @@ fun fileChooser() : File?
     {
         if(jfc.selectedFile.isDirectory)
             return jfc.selectedFile
-        else return null
+        else 
+            return null
     }
     return null
 }

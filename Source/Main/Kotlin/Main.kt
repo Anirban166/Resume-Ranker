@@ -11,7 +11,7 @@ import androidx.compose.ui.Alignment
 fun main() = application {
     val repo = Repository()
     val windowState = rememberWindowState(position = WindowPosition(Alignment.Center), width = 650.dp, height = 1000.dp)
-    Window(onCloseRequest = ::exitApplication, title = "Resume Scanner", resizable = true, state = windowState)
+    Window(onCloseRequest = ::exitApplication, title = "Keyword-based Resume Ranker (V3)", resizable = true, state = windowState)
     {
         val textArea by repo.textArea.collectAsState()        
         val keywords by repo.keywords.collectAsState()
