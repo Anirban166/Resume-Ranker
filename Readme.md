@@ -17,9 +17,14 @@ I/O
 The program takes three inputs via a Compose-based graphical user interface: 
 - A string of whitespace separated keywords.
 - The directory in which the resumes are stored locally for the user.
-- The location (along with the file specifics, i.e. with its name and extension) where a separate file containing the results for the session will be saved.
+- The location where a separate file containing the results for the session will be saved.
 
-When provided with these, it displays the total weightage of each resume and the best one among the lot with respect to the keyword-based search - all in a text box within the flexible GUI, and additionally within the user-specified file that contains the entire trace of the run for future reference (sort of enacting as a log).  
+When provided with these, it displays the total weightage of each resume and the best one among the lot with respect to the keyword-based search - all in a text box within the flexible GUI, and additionally within the user-specified file that contains the entire trace of the run for future reference (sort of enacting as a log).
+
+Here's a short video demonstrating a run with a bunch of authentic resumes:
+<p align = "center">
+<img src = "/Output/V3 (Kotlin, Compose)/Demo.gif">
+</p>
 
 <hr>
 <h2 align = "center">
